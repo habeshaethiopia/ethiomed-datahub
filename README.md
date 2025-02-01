@@ -36,8 +36,8 @@ Ensure you have the following installed:
 ### **Installation Steps**  
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/yourusername/ethiomed-data-warehouse.git
-   cd ethiomed-data-warehouse
+   git clone https://github.com/habeshaethiopia/ethiomed-datahub.git
+   cd ethiomed-datahub
    ```  
 2. Install dependencies:  
    ```bash

@@ -21,7 +21,7 @@ def load_csv(file_path):
     """ Load CSV file into a Pandas DataFrame. """
     try:
         df = pd.read_csv(file_path)
-        logging.info(f"✅ CSV file '{file_path}' loaded successfully.")
+        logging.info(f"✅  CSV file '{file_path}' loaded successfully.")
         return df
     except Exception as e:
         logging.error(f"❌ Error loading CSV file: {e}")
@@ -34,7 +34,7 @@ def extract_emojis(text):
 
 def remove_emojis(text):
     """ Remove emojis from the message text. """
-    return ''.join(c for c in text if c not in emoji.EMOJI_DATA)
+    return ''.join(c for c in text if c  not in emoji.EMOJI_DATA)
 
 def extract_youtube_links(text):
     """ Extract YouTube links from text, return 'No YouTube link' if none found. """

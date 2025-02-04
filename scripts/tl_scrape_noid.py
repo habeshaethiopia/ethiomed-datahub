@@ -41,6 +41,8 @@ async def scrape_channel(client, channel_username, writer, media_dir, num_messag
             
             media_path = None
             if message.media:
+                if not message.photo:
+                    continue  # Skip if the media is not a photo
                 filename = f"{channel_username}_{message.id}.{message.media.document.mime_type.split('/')[-1]}" if hasattr(message.media, 'document') else f"{channel_username}_{message.id}.jpg"
                 media_path = os.path.join(media_dir, filename)
                 await client.download_media(message.media, media_path)
@@ -67,15 +69,16 @@ async def main():
         
         media_dir = 'photos'
         os.makedirs(media_dir, exist_ok=True)
+        Folder = 'data'
+        os.makedirs(Folder, exist_ok=True)
 
         # Load channels from JSON file
         channels, comments = load_channels_from_json('channels.json')
-        
+        print(channels)
         num_messages_to_scrape = 20  # Specify the number of messages to scrape
-
         for channel in channels:
             # Create a CSV file named after the channel
-            csv_filename = f"{channel[1:]}_data.csv"  # Remove '@' from channel name
+            csv_filename = f"{Folder}/{channel[1:]}_data.csv"  # Remove '@' from channel name
             with open(csv_filename, 'a', newline='', encoding='utf-8') as file:
                 writer = csv.writer(file)
                 writer.writerow(['Channel Title', 'Channel Username', 'ID', 'Message', 'Date', 'Media Path'])
